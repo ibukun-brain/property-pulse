@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --grid-cols-70-30: "70% 28%";
+}
+
+@config "../../tailwind.config.js";

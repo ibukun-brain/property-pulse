@@ -1,19 +1,26 @@
 import React from "react";
 import "@/assets/styles/globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata = {
-    title: "Property Pulse | Find the Perfect Rental",
-    description: "Find your dream rental property",
-    keywords: "rental, find rentals, find properties"
-}
+  title: "Property Pulse | Find the Perfect Rental",
+  description: "Find your dream rental property",
+  keywords: "rental, find rentals, find properties",
+};
 
 const MainLayout = ({ children }) => {
   return (
-    <html lang="en">
-      <body>
-        <div>{children}</div>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body>
+          <Navbar />
+          <div>{children}</div>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 };
 
