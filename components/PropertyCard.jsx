@@ -18,7 +18,7 @@ const PropertyCard = ({ property }) => {
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/properties/${property.images[0]}`}
+        src={property.images[0]}
         width={0}
         height={0}
         sizes="100vw"
@@ -74,8 +74,7 @@ const PropertyCard = ({ property }) => {
           <div className="flex align-middle gap-2 mb-4 lg:mb-0">
             <i className="fa-solid fa-location-dot text-lg text-orange-700"></i>
             <span className="text-orange-700">
-              {" "}
-              {property.location.city} {property.location.state}{" "}
+              {property.location.street}, {property.location.city} {property.location.state}{" "}
             </span>
           </div>
           <Link

@@ -4,194 +4,100 @@ import {
   FaBath,
   FaRulerCombined,
   FaCheck,
-  FaPaperPlane,
   FaMapMarker,
-  FaShare,
   FaTimes,
-  FaBookmark,
 } from "react-icons/fa";
+import PropertyMap from "./PropertyMap";
 
 const PropertyDetail = ({ property }) => {
   return (
     <>
-      <section className="bg-blue-50">
-        <div className="container m-auto py-10 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 w-full gap-6">
-            <main className="col-span-3">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                <div className="text-gray-500 mb-4">{property.type}</div>
-                <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
-                <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-                  <FaMapMarker className="inline text-lg text-orange-700 mr-2" />
-                  <p className="text-orange-700">
-                    {property.location.street}, {property.location.city}{" "}
-                    {property.location.state}, {property.location.zipcode}
-                  </p>
+      <main className="col-span-3">
+        <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
+          <div className="text-gray-500 mb-4">{property.type}</div>
+          <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
+          <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
+            <FaMapMarker className="inline text-lg text-orange-700 mr-2" />
+            <p className="text-orange-700">
+              {property.location.street}, {property.location.city}{" "}
+              {property.location.state}, {property.location.zipcode}
+            </p>
+          </div>
+
+          <h3 className="text-lg font-bold my-6 bg-gray-800 text-white p-2">
+            Rates &amp; Options
+          </h3>
+          <div className="flex flex-col md:flex-row justify-around">
+            <div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
+              <div className="text-gray-500 mr-2 font-bold">Nightly</div>
+              <div className="text-2xl font-bold">
+                {property.rates.nightly ? (
+                  <div className="text-2xl font-bold text-blue-500">
+                    ${property.rates.nightly.toLocaleString()}
+                  </div>
+                ) : (
+                  <FaTimes className="fa fa-xmark text-red-700" />
+                )}
+              </div>
+            </div>
+            <div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
+              <div className="text-gray-500 mr-2 font-bold">Weekly</div>
+              {property.rates.weekly ? (
+                <div className="text-2xl font-bold text-blue-500">
+                  ${property.rates.weekly.toLocaleString()}
                 </div>
-
-                <h3 className="text-lg font-bold my-6 bg-gray-800 text-white p-2">
-                  Rates &amp; Options
-                </h3>
-                <div className="flex flex-col md:flex-row justify-around">
-                  <div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
-                    <div className="text-gray-500 mr-2 font-bold">Nightly</div>
-                    <div className="text-2xl font-bold">
-                      {property.rates.nightly ? (
-                        <div className="text-2xl font-bold text-blue-500">
-                          ${property.rates.nightly.toLocaleString()}
-                        </div>
-                      ) : (
-                        <FaTimes className="fa fa-xmark text-red-700" />
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
-                    <div className="text-gray-500 mr-2 font-bold">Weekly</div>
-                    {property.rates.weekly ? (
-                      <div className="text-2xl font-bold text-blue-500">
-                        ${property.rates.weekly.toLocaleString()}
-                      </div>
-                    ) : (
-                      <FaTimes className="fa fa-xmark text-red-700" />
-                    )}
-                  </div>
-                  <div className="flex items-center justify-center mb-4 pb-4 md:pb-0">
-                    <div className="text-gray-500 mr-2 font-bold">Monthly</div>
-                    {property.rates.monthly ? (
-                      <div className="text-2xl font-bold text-blue-500">
-                        ${property.rates.monthly.toLocaleString()}
-                      </div>
-                    ) : (
-                      <FaTimes className="fa fa-xmark text-red-700" />
-                    )}
-                  </div>
+              ) : (
+                <FaTimes className="fa fa-xmark text-red-700" />
+              )}
+            </div>
+            <div className="flex items-center justify-center mb-4 pb-4 md:pb-0">
+              <div className="text-gray-500 mr-2 font-bold">Monthly</div>
+              {property.rates.monthly ? (
+                <div className="text-2xl font-bold text-blue-500">
+                  ${property.rates.monthly.toLocaleString()}
                 </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-lg font-bold mb-6">
-                  Description &amp; Details
-                </h3>
-                <div className="flex justify-center gap-4 text-blue-500 mb-4 text-xl space-x-9">
-                  <p>
-                    <FaBed className="inline" /> {property.beds}{" "}
-                    <span className="hidden sm:inline">Beds</span>
-                  </p>
-                  <p>
-                    <FaBath className="inline" /> 2
-                    <span className="hidden sm:inline">{property.baths}</span>
-                  </p>
-                  <p>
-                    <FaRulerCombined className="inline" />
-                    {property.square_feet}{" "}
-                    <span className="hidden sm:inline">sqft</span>
-                  </p>
-                </div>
-                <p className="text-gray-500 mb-4">{property.description}</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-lg font-bold mb-6">Amenities</h3>
-
-                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
-                  {property.amenities.map((amenity, index) => (
-                    <li key={index}>
-                      <FaCheck className="inline text-green-600 mr-2" />{" "}
-                      {amenity}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map"></div>
-              </div>
-            </main>
-
-            <aside className="space-y-4">
-              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-                <FaBookmark className="inline mr-2" /> Bookmark Property
-              </button>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-                <FaShare className="inline mr-2" /> Share Property
-              </button>
-
-              {/* <!-- Contact Form --> */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6">
-                  Contact Property Manager
-                </h3>
-                <form>
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="name"
-                    >
-                      Name:
-                    </label>
-                    <input
-                      className="shadow border border-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="name"
-                      type="text"
-                      placeholder="Enter your name"
-                      required=""
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      Email:
-                    </label>
-                    <input
-                      className="shadow border border-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      required=""
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="phone"
-                    >
-                      Phone:
-                    </label>
-                    <input
-                      className="shadow border border-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="phone"
-                      type="text"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="message"
-                    >
-                      Message:
-                    </label>
-                    <textarea
-                      className="shadow border border-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 h-44 focus:outline-none focus:shadow-outline"
-                      id="message"
-                      placeholder="Enter your message"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <button
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-                      type="submit"
-                    >
-                      <FaPaperPlane className="inline mr-2" /> Send Message
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </aside>
+              ) : (
+                <FaTimes className="fa fa-xmark text-red-700" />
+              )}
+            </div>
           </div>
         </div>
-      </section>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+          <h3 className="text-lg font-bold mb-6">Description &amp; Details</h3>
+          <div className="flex justify-center gap-4 text-blue-500 mb-4 text-xl space-x-9">
+            <p>
+              <FaBed className="inline" /> {property.beds}{" "}
+              <span className="hidden sm:inline">Beds</span>
+            </p>
+            <p>
+              <FaBath className="inline" /> 2
+              <span className="hidden sm:inline">{property.baths}</span>
+            </p>
+            <p>
+              <FaRulerCombined className="inline" />
+              {property.square_feet}{" "}
+              <span className="hidden sm:inline">sqft</span>
+            </p>
+          </div>
+          <p className="text-gray-500 mb-4">{property.description}</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+          <h3 className="text-lg font-bold mb-6">Amenities</h3>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
+            {property.amenities.map((amenity, index) => (
+              <li key={index}>
+                <FaCheck className="inline text-green-600 mr-2" /> {amenity}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+          <PropertyMap property={property} />
+        </div>
+      </main> 
     </>
   );
 };

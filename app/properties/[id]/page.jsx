@@ -5,9 +5,13 @@ import { useParams } from "next/navigation";
 import { fetchProperty } from "@/utils/requests";
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaBookmark, FaShare } from "react-icons/fa";
 import PropertyDetail from "@/components/PropertyDetail";
 import Spinner from "@/components/Spinner";
+import PropertyImages from "@/components/PropertyImages";
+import PropertyContactForm from "@/components/PropertyContactForm";
+import ShareButton from "@/components/ShareButton";
+import BookMarkButton from "@/components/BookMarkButton";
 
 const PropertyDetailPage = () => {
   const { id } = useParams();
@@ -55,7 +59,20 @@ const PropertyDetailPage = () => {
               </Link>
             </div>
           </section>
-          <PropertyDetail property={property} />
+
+          <section className="bg-blue-50">
+            <div className="container m-auto py-10 px-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 w-full gap-6">
+                <PropertyDetail property={property} />
+                <aside className="space-y-4">
+                  <BookMarkButton property={property} />
+                  <ShareButton property={property} />
+                  <PropertyContactForm property={property} />
+                </aside>
+              </div>
+            </div>
+          </section>
+          <PropertyImages images={property.images} />
         </>
       )}
     </>
