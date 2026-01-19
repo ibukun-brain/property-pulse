@@ -2,6 +2,11 @@
 
 Property Pulse is a comprehensive real estate application built with Next.js 16, designed to help users find and list rental properties. It provides a seamless experience for browsing properties, managing listings, and communicating with property owners.
 
+## Images 🖼️
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/53af8f86-71f8-44c8-9de2-87170febd465" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/1cbc102c-8c07-4614-af97-edab41e7b16f" />
+
+
 ## ✨ Features
 
 *   **User Authentication**: Secure user login and registration using Google OAuth (via NextAuth.js).
